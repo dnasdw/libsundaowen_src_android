@@ -33,7 +33,9 @@ const UString& UGetModuleFileName()
 	if (nCount == -1)
 	{
 		c_sFileName.clear();
+#if !defined(SDW_ANDROID_HIDE_LOG_STRING)
 		printf("ERROR: readlink /proc/self/exe error\n\n");
+#endif
 	}
 	else
 	{
