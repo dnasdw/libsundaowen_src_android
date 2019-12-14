@@ -15,8 +15,10 @@
 #if SDW_PLATFORM == SDW_PLATFORM_MACOS
 #include <mach-o/dyld.h>
 #endif
+#if !defined(__ANDROID__)
 #if (SDW_COMPILER == SDW_COMPILER_GNUC && SDW_COMPILER_VERSION < 50400) || SDW_PLATFORM == SDW_PLATFORM_CYGWIN || defined(SDW_XCONVERT)
 #include <iconv.h>
+#endif
 #endif
 #include <dirent.h>
 #include <unistd.h>
@@ -125,8 +127,10 @@ typedef unsigned long long uint64_t;
 #include <cwctype>
 #include <algorithm>
 #include <bitset>
+#if !defined(__ANDROID__)
 #if SDW_COMPILER == SDW_COMPILER_CLANG || (SDW_COMPILER == SDW_COMPILER_MSC && SDW_COMPILER_VERSION >= 1600) || (SDW_COMPILER == SDW_COMPILER_GNUC && SDW_COMPILER_VERSION >= 50400)
 #include <codecvt>
+#endif
 #endif
 #include <deque>
 #include <functional>

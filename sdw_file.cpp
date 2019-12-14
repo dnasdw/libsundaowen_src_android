@@ -1,6 +1,7 @@
 #include "sdw_file.h"
 #include "sdw_string.h"
 
+#if !defined(__ANDROID__)
 void fu16printf(FILE* a_pFile, const wchar_t* a_szFormat, ...)
 {
 	va_list vaList;
@@ -10,6 +11,7 @@ void fu16printf(FILE* a_pFile, const wchar_t* a_szFormat, ...)
 	U16String sString = WToU16(sFormatted);
 	fwrite(sString.c_str(), 2, sString.size(), a_pFile);
 }
+#endif
 
 FILE* Fopen(const char* a_pFileName, const char* a_pMode, bool a_bVerbose /* = true */)
 {

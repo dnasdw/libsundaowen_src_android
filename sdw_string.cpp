@@ -44,10 +44,12 @@ n64 SToN64(const string& a_sString, int a_nRadix /* = 10 */)
 	return strtoll(a_sString.c_str(), nullptr, a_nRadix);
 }
 
+#if !defined(__ANDROID__)
 n64 SToN64(const wstring& a_sString, int a_nRadix /* = 10 */)
 {
 	return wcstoll(a_sString.c_str(), nullptr, a_nRadix);
 }
+#endif
 
 u8 SToU8(const string& a_sString, int a_nRadix /* = 10 */)
 {
@@ -84,10 +86,12 @@ u64 SToU64(const string& a_sString, int a_nRadix /* = 10 */)
 	return strtoull(a_sString.c_str(), nullptr, a_nRadix);
 }
 
+#if !defined(__ANDROID__)
 u64 SToU64(const wstring& a_sString, int a_nRadix /* = 10 */)
 {
 	return wcstoull(a_sString.c_str(), nullptr, a_nRadix);
 }
+#endif
 
 f32 SToF32(const string& a_sString)
 {
@@ -109,6 +113,7 @@ f64 SToF64(const wstring& a_sString)
 	return wcstod(a_sString.c_str(), nullptr);
 }
 
+#if !defined(__ANDROID__)
 #if (SDW_COMPILER == SDW_COMPILER_MSC && SDW_COMPILER_VERSION < 1600) || (SDW_PLATFORM == SDW_PLATFORM_WINDOWS && SDW_COMPILER != SDW_COMPILER_MSC)
 string WToU8(const wstring& a_sString)
 {
@@ -339,6 +344,7 @@ string UToX(const UString& a_sString, int a_nCodePage, const char* a_pCodeName)
 {
 	return WToX(UToW(a_sString), a_nCodePage, a_pCodeName);
 }
+#endif
 #endif
 
 string FormatV(const char* a_szFormat, va_list a_vaList)

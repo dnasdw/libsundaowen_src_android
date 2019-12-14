@@ -14,7 +14,9 @@
 #define UFopen Fopen
 #endif
 
+#if !defined(__ANDROID__)
 void fu16printf(FILE* a_pFile, const wchar_t* a_szFormat, ...);
+#endif
 
 FILE* Fopen(const char* a_pFileName, const char* a_pMode, bool a_bVerbose = true);
 

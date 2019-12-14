@@ -45,7 +45,9 @@ n16 SToN16(const wstring& a_sString, int a_nRadix = 10);
 n32 SToN32(const string& a_sString, int a_nRadix = 10);
 n32 SToN32(const wstring& a_sString, int a_nRadix = 10);
 n64 SToN64(const string& a_sString, int a_nRadix = 10);
+#if !defined(__ANDROID__)
 n64 SToN64(const wstring& a_sString, int a_nRadix = 10);
+#endif
 u8 SToU8(const string& a_sString, int a_nRadix = 10);
 u8 SToU8(const wstring& a_sString, int a_nRadix = 10);
 u16 SToU16(const string& a_sString, int a_nRadix = 10);
@@ -53,12 +55,15 @@ u16 SToU16(const wstring& a_sString, int a_nRadix = 10);
 u32 SToU32(const string& a_sString, int a_nRadix = 10);
 u32 SToU32(const wstring& a_sString, int a_nRadix = 10);
 u64 SToU64(const string& a_sString, int a_nRadix = 10);
+#if !defined(__ANDROID__)
 u64 SToU64(const wstring& a_sString, int a_nRadix = 10);
+#endif
 f32 SToF32(const string& a_sString);
 f32 SToF32(const wstring& a_sString);
 f64 SToF64(const string& a_sString);
 f64 SToF64(const wstring& a_sString);
 
+#if !defined(__ANDROID__)
 #if (SDW_COMPILER == SDW_COMPILER_GNUC && SDW_COMPILER_VERSION < 50400) || SDW_PLATFORM == SDW_PLATFORM_CYGWIN || (SDW_PLATFORM != SDW_PLATFORM_WINDOWS && defined(SDW_XCONVERT))
 template<typename TSrc, typename TDest>
 TDest TSToS(const TSrc& a_sString, const string& a_sSrcType, const string& a_sDestType)
@@ -146,6 +151,14 @@ string XToA(const string& a_sString, int a_nCodePage, const char* a_pCodeName);
 string AToX(const string& a_sString, int a_nCodePage, const char* a_pCodeName);
 UString XToU(const string& a_sString, int a_nCodePage, const char* a_pCodeName);
 string UToX(const UString& a_sString, int a_nCodePage, const char* a_pCodeName);
+#endif
+#else
+#define AToU8(x) string(x)
+#define U8ToA(x) string(x)
+#define U8ToU(x) string(x)
+#define UToU8(x) string(x)
+#define AToU(x) string(x)
+#define UToA(x) string(x)
 #endif
 
 string FormatV(const char* a_szFormat, va_list a_vaList);
